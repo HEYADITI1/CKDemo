@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Assignment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        h1 {
+            color: rgb(2, 63, 27);
+        }
+
+        section {
+            border: 2px solid #ddd;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+
+        #colorBox {
+            width: 200px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            background-color: lightblue;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #999;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #086d29;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="number"] {
+            width: 80px;
+        }
+    </style>
+</head>
+<body>
+
+
+<section class="Q-1">
+    <h1>Q-1. Form Validation</h1>
+    <form id="myForm" onsubmit="return validateForm()">
+        Name: <input type="text" id="name"><br><br>
+        Age: <input type="number" id="age"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</section>
+
+
+<section class="Q-2">
+    <h1>Q-2. Change Color on Mouse Over / Mouse Out</h1>
+    <div id="colorBox" onmouseover="changeColor()" onmouseout="restoreColor()">
+        Hover over me!
+    </div>
+</section>
+
+
+<section class="Q-3">
+    <h1>Q-3. Array Operations</h1>
+
+    <p><b>Original Array:</b> <span id="originalArray"></span></p>
+
+    <label>Enter a number to add at the end: </label>
+    <input type="number" id="addNumber">
+    <button onclick="addNumber()">Add</button>
+    <br><br>
+
+    <label>Enter a number to insert: </label>
+    <input type="number" id="insertNumber">
+    <label>at index:</label>
+    <input type="number" id="insertIndex">
+    <button onclick="insertNumber()">Insert</button>
+    <br><br>
+
+    <label>Replace all occurrences of: </label>
+    <input type="number" id="oldNumber">
+    <label>with: </label>
+    <input type="number" id="newNumber">
+    <button onclick="replaceNumber()">Replace</button>
+    <br><br>
+
+    <label>Find index of number: </label>
+    <input type="number" id="findNumber">
+    <button onclick="findIndex()">Find</button>
+    <br><br>
+
+    <button onclick="sortArray()">Sort (Ascending)</button>
+    <button onclick="reverseArray()">Reverse</button>
+
+    <p id="output"></p>
+</section>
+
+
+<section class="Q-4">
+    <h1>Q-4. Student Marks Management System</h1>
+    <p><b>Objective:</b> Dynamically manage student information and display their marks.</p>
+
+    <button onclick="addStudent()">Add Student</button>
+
+    <table id="studentTable">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Subject 1</th>
+                <th>Subject 2</th>
+                <th>Subject 3</th>
+                <th>Subject 4</th>
+                <th>Subject 5</th>
+                <th>Total Marks</th>
+                <th>Average Marks</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+    </table>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
