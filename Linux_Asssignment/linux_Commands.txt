@@ -1,0 +1,151 @@
+//-----Ques.1 Find and terminate the top memory-consuming process on your system.-------
+
+// return top processes.
+top
+
+// terminate the process.
+sudo kill PID
+
+
+//------ Ques.2 Create a user named devops and grant them sudo privileges.--------
+
+// Create the user
+sudo adduser devops
+
+// Add the user to the sudo group
+sudo usermod -aG sudo devops
+
+//  usermod → modify a user.
+// -aG sudo → add the user to the sudo group.
+
+//verify
+groups devops
+// O/p-> devops : devops sudo
+
+// ----Ques.3 Connect to a remote server, create a directory, and copy files into it using SCP.----------
+
+//install ssh in both the system before doing ssh
+
+// SSH into remote system
+ssh akanchha-singh@10.1.210.149
+
+// make directory
+mkdir ~/assignment
+
+// exit the remote server
+exit
+
+// [in local] command to copy scpfile to remote server directory 
+scp scpfile.txt akanchha-singh@10.1.210.149:~/assignment/
+
+// -------Ques.4 List all active processes and save only those containing the word java into a file.----------
+
+ps aux | grep java
+
+// O/P-> aditi-b+   23027  0.0  0.0   9144  2192 pts/2    S+   16:49   0:00 grep --color=auto java
+
+ps aux | grep java > java_processes.txt
+
+cat java_processes.txt
+// O/P-> aditi-b+   23335  0.0  0.0   9144  2104 pts/2    S+   16:54   0:00 grep --color=auto java
+
+
+// --------Ques.5 Generate an SSH key pair and configure it for two different remote servers.------
+
+ssh-keygen -t rsa -b 4096 -C "aditibhadoria@cloudkeeper.com"     // Generate SSH key pairs
+
+eval "$(ssh-agent -s)"       //start ssh agent
+ssh-add ~/.ssh/id_rsa        //add keys
+ssh-add -l                  //verify
+
+ssh akanchha-singh@10.1.210.149       //ssh into remote server
+mkdir ~/aditi                         //created new directory in remote server
+
+
+// -------Ques.6 Find all lines containing “error” in /var/log/syslog and redirect them to errors_found.txt------
+
+grep "error" /var/log/syslog > errors_found.txt
+cat errors_found.txt
+
+//----Ques.7 Find all .conf files in /etc, sort them alphabetically, and save to conf_list.txt.........
+
+find /etc -type f -name "*.conf" | sort > conf_list.txt
+cat conf_list.txt
+
+// ----Ques.8 Display the total number of unique shell types listed in /etc/passwd and save to shell_count.txt-----
+
+cut -d: -f7 /etc/passwd | sort | uniq | wc -l > shell_count.txt
+cat shell_count.txt  // 5
+
+//-----Ques.9 Explore vi/vim for  Creating a text file. ---------------
+
+vim practice.txt
+cat practice.txt
+
+//-----Ques.10 Reset the current user password and reboot the system form shell. ------------------
+
+sudo passwd aditi-bhadoria
+sudo reboot
+
+//----Ques.11 Zip the content of your home directory via tar and send it via scp to other person laptop. Unzip the content on other person laptop via tar.------
+
+
+tar -czvf linux_backup.tar.gz ~/linux_practical/
+
+scp ~/linux_practical/linux_backup.tar.gz akanchha-singh@10.1.210.149:/home/akanchha-singh/aditi/           //O/P-linux_backup.tar.gz  
+
+
+tar -xzvf home_backup.tar.gz -C ~  //verify in another terminal by extracting zipped file
+
+
+//----Ques.12 Install and setup application via apt - mysql, postman, docker, dbeaver----------
+
+//mysql
+
+sudo apt install mysql-server -y
+sudo systemctl enable mysql
+sudo systemctl start mysql
+sudo mysql_secure_installation
+sudo systemctl status mysql
+sudo mysql -u root -p
+
+//postman
+
+sudo snap install postman
+postman &
+
+
+//docker
+
+sudo apt remove docker docker-engine docker.io containerd runc
+
+sudo apt install ca-certificates curl gnupg -y
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+  https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+
+sudo systemctl start docker
+sudo systemctl enable docker
+
+docker --version
+sudo docker run hello-world
+
+//dbeaver
+
+wget -O - https://dbeaver.io/debs/dbeaver.gpg.key | sudo apt-key add -
+echo "deb https://dbeaver.io/debs/dbeaver-ce /" | sudo tee /etc/apt/sources.list.d/dbeaver.list
+sudo apt update
+
+sudo apt install dbeaver-ce -y
+
+dbeaver &
+
+
+
