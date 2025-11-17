@@ -17,6 +17,7 @@ public class BankAccount {
 
     public static void main(String[] args) {
         BankAccount acc1 = new BankAccount("123456789", "Aditi Bhadoria", 25000.50);
+        
         acc1.displayDetails();
     }
 }
